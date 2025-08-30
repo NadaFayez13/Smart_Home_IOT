@@ -1,10 +1,5 @@
 # Smart_Home_IOT
 
-# **Smart Home IoT Project**
-
-This repository contains the **Smart Home IoT system**, integrating hardware, MQTT communication, a database, a web application, and **Docker-based deployment** for easy development and scalability.
-
----
 
 ## **IoT Hardware**
 The hardware side is the core of the smart home system.
