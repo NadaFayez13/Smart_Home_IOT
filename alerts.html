@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts - Smart Home</title>
+    <link rel="stylesheet" href="static/alerts.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="alerts-container">
+        <!-- البانل الجانبي -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1># Hello</h1>
+                <p>مرحباً بك في نظام المنزل الذكي</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>Platform Navigation</h3>
+                    <ul>
+                        <li class="nav-item" data-page="my-home">
+                            <i class="fas fa-home"></i>
+                            <span>My home</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Control</h3>
+                    <ul>
+                        <li class="nav-item" data-page="control">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Device Control</span>
+                        </li>
+                        <li class="nav-item active" data-page="alerts">
+                            <i class="fas fa-bell"></i>
+                            <span>Alerts</span>
+                            <span class="notification-badge" id="alertsCount">12</span>
+                        </li>
+                        <li class="nav-item" data-page="history">
+                            <i class="fas fa-history"></i>
+                            <span>History</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Notification</h3>
+                    <div class="notification-count">12</div>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Theme</h3>
+                    <label class="theme-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                        <span class="theme-label">Dark Mode</span>
+                    </label>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="backToDashboard" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </button>
+            </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h2>Alerts</h2>
+                    <p>Below is where you can place your content.</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <span class="user-name">ندا</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div id="alerts" class="page-content active">
+                    <!-- فلترة الإنذارات -->
+                    <div class="filters-section">
+                        <div class="filter-group">
+                            <label for="alertType">Filter by Type:</label>
+                            <select id="alertType">
+                                <option value="all">All Alerts</option>
+                                <option value="temperature">Temperature</option>
+                                <option value="gas">Gas Leak</option>
+                                <option value="motion">Motion</option>
+                                <option value="door">Door</option>
+                                <option value="system">System</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="alertStatus">Filter by Status:</label>
+                            <select id="alertStatus">
+                                <option value="all">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                        </div>
+
+                        <button class="filter-btn" id="applyFilters">
+                            <i class="fas fa-filter"></i>
+                            Apply Filters
+                        </button>
+
+                        <button class="clear-btn" id="clearFilters">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+
+                    <!-- قائمة الإنذارات -->
+                    <div class="alerts-list">
+                        <div class="alerts-header">
+                            <h3>Recent Alerts</h3>
+                            <span class="alerts-count" id="totalAlerts">12 alerts found</span>
+                        </div>
+
+                        <div class="alert-items" id="alertItems">
+                            <!-- الإنذارات هتتحمل هنا dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- إحصائيات الإنذارات -->
+                    <div class="alerts-stats">
+                        <h3>Alerts Statistics</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card critical">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="criticalCount">3</span>
+                                    <span class="stat-label">Critical Alerts</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card warning">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="warningCount">5</span>
+                                    <span class="stat-label">Warnings</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card info">
+                                <i class="fas fa-info-circle"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="infoCount">4</span>
+                                    <span class="stat-label">Info Alerts</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card resolved">
+                                <i class="fas fa-check-circle"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="resolvedCount">8</span>
+                                    <span class="stat-label">Resolved</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="static/alerts.js"></script>
+</body>
+</html>

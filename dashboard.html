@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Home - Smart Home Dashboard</title>
+    <link rel="stylesheet" href="static/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- البانل الجانبي -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1># Hello</h1>
+                <p>مرحباً بك في نظام المنزل الذكي</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>Platform Navigation</h3>
+                    <ul>
+                        <li class="nav-item active" data-page="my-home">
+                            <i class="fas fa-home"></i>
+                            <span>My home</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Control</h3>
+                    <ul>
+                        <li class="nav-item" data-page="control">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Device Control</span>
+                        </li>
+                        <li class="nav-item" data-page="alerts">
+                            <i class="fas fa-bell"></i>
+                            <span>Alerts</span>
+                            <span class="notification-badge">12</span>
+                        </li>
+                        <li class="nav-item" data-page="history">
+                            <i class="fas fa-history"></i>
+                            <span>History</span>
+                        </li>
+                        <li class="nav-item" data-page="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Notification</h3>
+                    <div class="notification-count">12</div>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Theme</h3>
+                    <label class="theme-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                        <span class="theme-label">Dark Mode</span>
+                    </label>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </button>
+            </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h2>My home</h2>
+                    <p>Monitor your home sensors in real-time</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <span class="user-name">ندا</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div id="my-home" class="page-content active">
+                    <!-- بطاقات المستشعرات -->
+                    <div class="dashboard-grid">
+                        <!-- Temperature Card -->
+                        <div class="sensor-card">
+                            <div class="card-header">
+                                <i class="fas fa-temperature-high"></i>
+                                <h3>Temperature</h3>
+                            </div>
+                            <div class="card-value" id="temperature-value">24.5°C</div>
+                            <div class="card-status status-normal">Normal</div>
+                            <div class="card-time" id="temperature-time">Updated: 2 min ago</div>
+                        </div>
+
+                        <!-- Humidity Card -->
+                        <div class="sensor-card">
+                            <div class="card-header">
+                                <i class="fas fa-tint"></i>
+                                <h3>Humidity</h3>
+                            </div>
+                            <div class="card-value" id="humidity-value">65%</div>
+                            <div class="card-status status-optimal">Optimal</div>
+                            <div class="card-time" id="humidity-time">Updated: 2 min ago</div>
+                        </div>
+
+                        <!-- Gas Level Card -->
+                        <div class="sensor-card">
+                            <div class="card-header">
+                                <i class="fas fa-wind"></i>
+                                <h3>Gas Level</h3>
+                            </div>
+                            <div class="card-value" id="gas-value">250 ppm</div>
+                            <div class="card-status status-safe">Safe</div>
+                            <div class="card-time" id="gas-time">Updated: 2 min ago</div>
+                        </div>
+
+                        <!-- Motion Card -->
+                        <div class="sensor-card">
+                            <div class="card-header">
+                                <i class="fas fa-running"></i>
+                                <h3>Motion</h3>
+                            </div>
+                            <div class="card-value" id="motion-value">No Motion</div>
+                            <div class="card-status status-inactive">Inactive</div>
+                            <div class="card-time" id="motion-time">Updated: 2 min ago</div>
+                        </div>
+
+                        <!-- Current Card -->
+                        <div class="sensor-card">
+                            <div class="card-header">
+                                <i class="fas fa-bolt"></i>
+                                <h3>Current</h3>
+                            </div>
+                            <div class="card-value" id="current-value">12.5A</div>
+                            <div class="card-status status-active">Active</div>
+                            <div class="card-time" id="current-time">Updated: 2 min ago</div>
+                        </div>
+
+                        <!-- Door Status Card -->
+                        <div class="sensor-card">
+                            <div class="card-header">
+                                <i class="fas fa-door-closed"></i>
+                                <h3>Door</h3>
+                            </div>
+                            <div class="card-value" id="door-value">Locked</div>
+                            <div class="card-status status-secure">Secure</div>
+                            <div class="card-time" id="door-time">Updated: 2 min ago</div>
+                        </div>
+
+                        <!-- Light Status Card -->
+                        <div class="sensor-card">
+                            <div class="card-header">
+                                <i class="fas fa-lightbulb"></i>
+                                <h3>Light</h3>
+                            </div>
+                            <div class="card-value" id="light-value">Off</div>
+                            <div class="card-status status-off">Off</div>
+                            <div class="card-time" id="light-time">Updated: 2 min ago</div>
+                        </div>
+                    </div>
+
+                    <!-- إحصائيات سريعة -->
+                    <div class="stats-section">
+                        <h3>Quick Stats</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <i class="fas fa-clock"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="uptime-value">12h 45m</span>
+                                    <span class="stat-label">System Uptime</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-database"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="data-points">1,247</span>
+                                    <span class="stat-label">Data Points</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="security-status">Active</span>
+                                    <span class="stat-label">Security Status</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- باقي الصفحات (مخفي حالياً) -->
+                <div id="control" class="page-content">
+                    <h3>Control Page</h3>
+                    <p>هنا سيتم عرض لوحة التحكم</p>
+                </div>
+
+                <div id="alerts" class="page-content">
+                    <h3>Alerts Page</h3>
+                    <p>هنا سيتم عرض الإنذارات</p>
+                </div>
+
+                <div id="history" class="page-content">
+                    <h3>History Page</h3>
+                    <p>هنا سيتم عرض التاريخ</p>
+                </div>
+
+                <div id="settings" class="page-content">
+                    <h3>Settings Page</h3>
+                    <p>هنا الإعدادات</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="static/dashboard.js"></script>
+</body>
+</html> 

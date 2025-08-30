@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - Smart Home</title>
+    <link rel="stylesheet" href="static/history.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="history-container">
+        <!-- البانل الجانبي -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1># Hello</h1>
+                <p>مرحباً بك في نظام المنزل الذكي</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>Platform Navigation</h3>
+                    <ul>
+                        <li class="nav-item" data-page="my-home">
+                            <i class="fas fa-home"></i>
+                            <span>My home</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Control</h3>
+                    <ul>
+                        <li class="nav-item" data-page="control">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Device Control</span>
+                        </li>
+                        <li class="nav-item" data-page="alerts">
+                            <i class="fas fa-bell"></i>
+                            <span>Alerts</span>
+                        </li>
+                        <li class="nav-item active" data-page="history">
+                            <i class="fas fa-history"></i>
+                            <span>History</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Notification</h3>
+                    <div class="notification-count">8</div>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Theme</h3>
+                    <label class="theme-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                        <span class="theme-label">Dark Mode</span>
+                    </label>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="backToDashboard" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </button>
+            </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h2>History</h2>
+                    <p>Below is where you can place your content.</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <span class="user-name">ندا</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div id="history" class="page-content active">
+                    <!-- فلترة التاريخ -->
+                    <div class="filters-section">
+                        <div class="filter-group">
+                            <label for="historyType">Filter by Type:</label>
+                            <select id="historyType">
+                                <option value="all">All History</option>
+                                <option value="sensor">Sensor Readings</option>
+                                <option value="door">Door Access</option>
+                                <option value="light">Light Control</option>
+                                <option value="alert">Alerts</option>
+                                <option value="system">System Events</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="dateRange">Date Range:</label>
+                            <select id="dateRange">
+                                <option value="today">Today</option>
+                                <option value="yesterday">Yesterday</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="custom">Custom Range</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group" id="customDateRange" style="display: none;">
+                            <label for="startDate">From:</label>
+                            <input type="date" id="startDate">
+                            
+                            <label for="endDate">To:</label>
+                            <input type="date" id="endDate">
+                        </div>
+
+                        <button class="filter-btn" id="applyFilters">
+                            <i class="fas fa-filter"></i>
+                            Apply Filters
+                        </button>
+
+                        <button class="clear-btn" id="clearFilters">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+
+                        <button class="export-btn" id="exportBtn">
+                            <i class="fas fa-download"></i>
+                            Export CSV
+                        </button>
+                    </div>
+
+                    <!-- إحصائيات التاريخ -->
+                    <div class="stats-section">
+                        <h3>History Overview</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <i class="fas fa-chart-line"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="totalEvents">1,247</span>
+                                    <span class="stat-label">Total Events</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <i class="fas fa-door-open"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="doorEvents">324</span>
+                                    <span class="stat-label">Door Accesses</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <i class="fas fa-bell"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="alertEvents">89</span>
+                                    <span class="stat-label">Alerts Triggered</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <i class="fas fa-lightbulb"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="lightEvents">156</span>
+                                    <span class="stat-label">Light Controls</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- قائمة التاريخ -->
+                    <div class="history-list">
+                        <div class="history-header">
+                            <h3>Recent Activities</h3>
+                            <span class="history-count" id="totalHistory">1,247 events found</span>
+                        </div>
+
+                        <div class="history-items" id="historyItems">
+                            <!-- الأحداث هتتحمل هنا dynamically -->
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="page-btn" id="prevPage" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                                Previous
+                            </button>
+                            <span class="page-info" id="pageInfo">Page 1 of 5</span>
+                            <button class="page-btn" id="nextPage">
+                                Next
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="static/history.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control - Smart Home</title>
+    <link rel="stylesheet" href="static/control.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="control-container">
+        <!-- البانل الجانبي -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1># Hello</h1>
+                <p>Control Your Smart Home</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>Platform Navigation</h3>
+                    <ul>
+                        <li class="nav-item" data-page="my-home">
+                            <i class="fas fa-home"></i>
+                            <span>My home</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Control</h3>
+                    <ul>
+                        <li class="nav-item active" data-page="control">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Device Control</span>
+                        </li>
+                        <li class="nav-item" data-page="alerts">
+                            <i class="fas fa-bell"></i>
+                            <span>Alerts</span>
+                        </li>
+                        <li class="nav-item" data-page="history">
+                            <i class="fas fa-history"></i>
+                            <span>History</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Notification</h3>
+                    <div class="notification-count">8</div>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Theme</h3>
+                    <label class="theme-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                        <span class="theme-label">Dark Mode</span>
+                    </label>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="backToDashboard" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </button>
+            </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h2>Control Smart Home</h2>
+                    <p>Below is where you can place your content.</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <span class="user-name">ندا</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div id="control" class="page-content active">
+                    <!-- Device Control Section -->
+                    <div class="control-section">
+                        <h3 class="section-title">Device Control</h3>
+                        
+                        <!-- Door Control -->
+                        <div class="control-card">
+                            <div class="control-header">
+                                <i class="fas fa-door-closed"></i>
+                                <h4>Door Control</h4>
+                                <label class="switch">
+                                    <input type="checkbox" id="doorMasterSwitch">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="control-buttons">
+                                <button class="action-btn door-btn" data-action="open">
+                                    <i class="fas fa-door-open"></i>
+                                    Open Door
+                                </button>
+                                <button class="action-btn door-btn" data-action="close">
+                                    <i class="fas fa-door-closed"></i>
+                                    Close Door
+                                </button>
+                            </div>
+                            <div class="door-status">
+                                <span class="status-text">Current Status: </span>
+                                <span class="status-value" id="doorStatusValue">Locked</span>
+                            </div>
+                        </div>
+
+                        <!-- Light Control -->
+<div class="control-card">
+    <div class="control-header">
+        <i class="fas fa-lightbulb"></i>
+        <h4>Light Control</h4>
+        <label class="switch">
+            <input type="checkbox" id="lightMasterSwitch">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div class="light-control">
+        <div class="light-item">
+            <span>Home Light</span>
+            <label class="switch">
+                <input type="checkbox" id="lightSwitch1" class="light-switch">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+                    <!-- Quick Actions Section -->
+                    <div class="quick-actions-section">
+                        <h3 class="section-title">Quick Actions</h3>
+                        
+                        <div class="quick-actions-grid">
+                            <button class="quick-action-btn" id="homeBtn">
+                                <i class="fas fa-home"></i>
+                                <span>Home</span>
+                            </button>
+                            
+                            <button class="quick-action-btn" id="allOffBtn">
+                                <i class="fas fa-power-off"></i>
+                                <span>All Off</span>
+                            </button>
+                            
+                            <button class="quick-action-btn" id="securityBtn">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Security</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="static/control.js"></script>
+</body>
+</html>
