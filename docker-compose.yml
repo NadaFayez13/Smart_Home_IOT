@@ -1,0 +1,65 @@
+version: "3.9"
+
+services:
+  # 🟢 MQTT Broker
+  esp32-server:
+    image: eclipse-mosquitto:2.0
+    container_name: esp32-server
+    ports:
+      - "1883:1883"   # MQTT
+      - "9001:9001"   # MQTT over WebSocket
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - mosq_data:/mosquitto/data
+      - mosq_log:/mosquitto/log
+    networks:
+      - proj
+
+  # 🟢 Flask API
+  flask-api:
+    build: ./flask-api
+    container_name: flask-api
+    ports:
+      - "5000:5000"
+    environment:
+      - MQTT_BROKER=esp32-server   # اسم السيرفس (مش localhost)
+      - MQTT_PORT=1883
+      - API_MOCK_URL=http://api-mock:3001
+    depends_on:
+      - esp32-server
+      - api-mock
+    networks:
+      - proj
+
+  # 🟢 React / Web UI
+  web-ui:
+    build: ./web-ui
+    container_name: web-ui
+    ports:
+      - "3000:3000"
+    environment:
+      # مهم: web-ui بيكلم flask-api جوا الشبكة باسم السيرفس
+      - VITE_API_BASE=http://flask-api:5000
+    depends_on:
+      - flask-api
+    networks:
+      - proj
+
+  # 🟢 JSON Mock API
+  api-mock:
+    image: typicode/json-server:latest
+    container_name: api-mock
+    command: ["--watch", "/data/db.json", "--host", "0.0.0.0", "--port", "3001"]
+    volumes:
+      - ./api-mock/db.json:/data/db.json:ro
+    ports:
+      - "3001:3001"
+    networks:
+      - proj
+
+networks:
+  proj:
+
+volumes:
+  mosq_data:
+  mosq_log:
